@@ -164,7 +164,7 @@ python index.py
 
 #### Check results
 
-The following excerpt of the results shows the extracted document text in the `TO_DO` object:
+The following excerpt of the results shows document classification:
 
 ```json
 {
