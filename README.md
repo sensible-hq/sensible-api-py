@@ -7,7 +7,9 @@ The open-source Sensible Python SDK offers convenient access to the [Sensible AP
 
 ## Documentation
 
-For configuration options, see [Python SDK reference](https://docs.sensible.so/docs/sdk-python).
+- For extraction and classification response schemas, see [Sensible API](https://docs.sensible.so/reference/choosing-an-endpoint).
+- For configuring document extractions, see [SenseML reference](https://docs.sensible.so/docs/senseml-reference-introduction).
+
 
 ## Install
 
