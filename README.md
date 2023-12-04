@@ -145,7 +145,7 @@ results = sensible.waitFor(request)
 
 To classify an example document, take the following steps:
 
-1. Follow the steps in [Out-of-the-box extractions](https://docs.sensible.so/reference/choosing-an-endpoint/library-quickstart) to add support for bank statements to your account.
+1. Follow the steps in [Out-of-the-box extractions](https://docs.sensible.so/docs/library-quickstart) to add support for bank statements to your account.
 
 2. Follow the steps in the preceding sections to install and initialize the SDK.
 
