@@ -22,7 +22,7 @@ pip install sensibleapi
 To import Sensible and other dependencies to your project,  create an `index.py` file in your test project, and add the following lines to the file:
 
 ```python
-from sensibleapi.sensibleapi import SensibleSDK
+from sensibleapi import SensibleSDK
 ```
 
 ## Initialize
@@ -119,7 +119,7 @@ Navigate to https://app.sensible.so/editor/instruct/?d=sensible_instruct_basics&
 See the following code for a complete example of how to use the SDK for document extraction in your own app.
 
 ```python
-from sensibleapi.sensibleapi import SensibleSDK
+from sensibleapi import SensibleSDK
 
 sensible = SensibleSDK(YOUR_API_KEY)
 
@@ -198,7 +198,7 @@ The following excerpt of the results shows document classification:
 Here's a complete example of how to use the SDK for document classification in your own app:
 
 ```python
-from sensibleapi.sensibleapi import SensibleSDK
+from sensibleapi import SensibleSDK
 
 sensible = SensibleSDK(YOUR_API_KEY)
 request = sensible.classify(path="./boa_sample.pdf") 
