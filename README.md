@@ -62,7 +62,7 @@ To extract data from a sample document at a URL:
 ```python
 from sensibleapi import SensibleSDK
 
-sensible = SensibleSDK(YOUR_API_KEY)  # replace with your API key
+sensible = SensibleSDK("YOUR_API_KEY")  # replace with your API key
 request = sensible.extract(
     url="https://github.com/sensible-hq/sensible-docs/raw/main/readme-sync/assets/v0/pdfs/contract.pdf",
     document_type="sensible_instruct_basics",
