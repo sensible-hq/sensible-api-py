@@ -1,25 +1,40 @@
 # Sensible Python SDK
 
-The open-source Sensible Python SDK offers convenient access to the [Sensible API](https://docs.sensible.so/reference/choosing-an-endpoint). Use the Sensible Python SDK to:
+Welcome! Sensible is a developer-first platform for extracting structured data from documents, for example, business forms in PDF format. use Sensible to build document-automation features into your SaaS products. Sensible is highly configurable: you can get simple data [in minutes](https://docs.sensible.so/docs/getting-started-ai) by leveraging GPT-4 and other large-language models (LLMs), or you can tackle complex and idiosyncratic document formatting with Sensible's powerful [layout-based document primitives](https://docs.sensible.so/docs/getting-started).
 
-- [Extract](#extract-document-data): Extract structured data from your custom documents. Configure the extractions for a set of similar documents, or *document type*, in the Sensible app or Sensible API, then you run extractions for documents of the type with this SDK.
-- [Classify](#classify): Classify documents by the types you define, for example, bank statements or tax forms. Use classification to determine which documents to extract prior to calling a Sensible extraction endpoint, or route each document in a system of record.
+![Click to enlarge](https://raw.githubusercontent.com/sensible-hq/sensible-docs/main/readme-sync/assets/v0/images/final/intro_SDK_2.png)
+
+This open-source Sensible SDK offers convenient access to the [Sensible API](https://docs.sensible.so/reference/choosing-an-endpoint). Use this SDK to:
+
+- [Extract](#usage-extract-document-data): Extract structured data from your custom documents. Configure the extractions for a set of similar documents, or *document type*, in the Sensible app or Sensible API, then run extractions for documents of the type with this SDK.
+- [Classify](#usage-classify-documents-by-type): Classify documents by the types you define, for example, bank statements or tax forms. Use classification to determine which documents to extract prior to calling a Sensible extraction endpoint, or route each document in a system of record.
 
 ## Documentation
 
-- For extraction and classification response schemas, see [Sensible API](https://docs.sensible.so/reference/choosing-an-endpoint).
+- For extraction and classification response schemas, see the [Sensible API reference](https://docs.sensible.so/reference/choosing-an-endpoint).
 - For configuring document extractions, see [SenseML reference](https://docs.sensible.so/docs/senseml-reference-introduction).
 
+## Versions
+
+- The latest version of this SDK is v0.
+- The latest version of the Sensible API is v0.
+
+## Python support
+
+- This SDK supports all non end-of-life versions of Python.
 
 ## Install
 
-In an environment in which you've installed Python, create a directory for a test project, open a command prompt in the directory, and install the dependencies:  
+In an environment in which you've installed Python, create a directory for a test project, open a command prompt in the directory, and install the dependencies:
 
 ```shell
 pip install sensibleapi
 ```
 
-To import Sensible and other dependencies to your project,  create an `index.py` file in your test project, and add the following lines to the file:
+To import Sensible to your project,  create an `index.py` file in your test project, and add the following lines to the file:
+
+
+
 
 ```python
 from sensibleapi import SensibleSDK
@@ -29,67 +44,46 @@ from sensibleapi import SensibleSDK
 
 Get an account at [sensible.so](https://app.sensible.so/register) if you don't have one already.
 
-To initialize the dependency, paste the following code into your `index.py` file and replace `YOUR_API_KEY` with your [API key](https://app.sensible.so/account/):
+To initialize the SDK, paste the following code into your `index.py` file and replace `YOUR_API_KEY` with your [API key](https://app.sensible.so/account/):
 
 ```python
-sensible = SensibleSDK(apiKey)
+sensible = SensibleSDK(YOUR_API_KEY)
 ```
 
-**Note** In production ensure you secure your API key, for example as a GitHub secret.
+**Note:** Ensure you secure your API key in production, for example as a GitHub secret.
 
-## Extract document data
-
-#### Option 1: document URL
+## Quickstart
 
 To extract data from a sample document at a URL:
 
-1. Paste the following code into your `index.py` file:
+1. Install the Sensible SDK using the steps in the previous section.
+2. Paste the following code into an empty `index.py` file:
 
 ```python
+from sensibleapi import SensibleSDK
+
+sensible = SensibleSDK(YOUR_API_KEY)  # replace with your API key
 request = sensible.extract(
     url="https://github.com/sensible-hq/sensible-docs/raw/main/readme-sync/assets/v0/pdfs/contract.pdf",
-    documentType="sensible_instruct_basics",
-    environment="development" # see Python SDK reference for full list of configuration options
-    )
-
-results = sensible.waitFor(request) # waitFor is optional if you configure a webhook
-print(results) # see Python SDK reference to convert results from JSON to Excel
+    document_type="sensible_instruct_basics",
+    environment="development"
+)
+results = sensible.wait_for(request)  # polls every 5 seconds. Optional if you configure a webhook
+print(results)
 ```
 
-2. In a command prompt in the same directory as your `index.py` file, run the code with the following command:
+2. Replace `YOUR_API_KEY` with your [API key](https://app.sensible.so/account/).
+3. In a command prompt in the same directory as your `index.py` file, run the code with the following command:
 
 ```shell
 python index.py
 ```
 
-The code extracts data from an example document (`contract.pdf`) using an example document type (`sensible_instruct_basics`) and an example extraction configuration. 
+The code extracts data from an example document (`contract.pdf`) using an example document type (`sensible_instruct_basics`) and an example extraction configuration.
 
-#### Option 2: local file
+#### Results
 
-To extract from a local file: 
-
-1. Download the following example file and save it in the same directory as your `index.py` file: 
-
-| Example document | [Download link](https://github.com/sensible-hq/sensible-docs/raw/main/readme-sync/assets/v0/pdfs/contract.pdf) |
-| ---------------- | ------------------------------------------------------------ |
-
-2. Paste the following code into your `index.py` file, then run it according to the steps in the previous option:
-
-
-```python
-request = sensible.extract(
-      path="./contract.pdf",
-      documentType="sensible_instruct_basics",
-    )
-results = sensible.waitFor(request) # waitFor is optional if you configure a webhook
-print(results) # see Python SDK reference to convert results from JSON to Excel
-```
-
-This code uploads your local file to a Sensible-hosted URL and extracts data from an example document (`contract.pdf`) using an example document type (`sensible_instruct_basics`) and an example extraction configuration. 
-
-#### Check results
-
-The following excerpt of the results shows the extracted document text in the `parsed_document` object:
+You should see the following extracted document text in the `parsed_document` object in the logged response:
 
 ```json
 {
@@ -106,102 +100,103 @@ The following excerpt of the results shows the extracted document text in the `p
 }
 ```
 
-For more information about the response body schema, see [Extract data from a document](https://docs.sensible.so/reference/extract-data-from-a-document) and expand the 200 responses in the middle pane and the right pane to see the model and an example, respectively.
+#### Optional: Understand extraction
 
-#### Optional: understand extraction
-
-Navigate to https://app.sensible.so/editor/instruct/?d=sensible_instruct_basics&c=contract&g=contract to see how the extraction you just ran works in the Sensible app. You can add more fields to the extraction configuration to extract more data:
+Navigate to the example in the [SenseML editor](https://app.sensible.so/editor/?d=sensible_instruct_basics&c=contract&g=contract) to see how the extraction you just ran works in the Sensible app. You can add more fields to the left pane to extract more data:
 
 ![Click to enlarge](https://raw.githubusercontent.com/sensible-hq/sensible-docs/main/readme-sync/assets/v0/images/final/sdk_node_1.png)
 
-#### Complete code example
+## Usage: Extract document data
 
-See the following code for a complete example of how to use the SDK for document extraction in your own app.
+You can use this SDK to extract data from a document, as specified by the extraction configurations and document types defined in your Sensible account.
+
+### Overview
+
+See the following steps for an overview of the SDK's workflow for document data extraction:
+
+1. Instantiate an SDK object with `SensibleSDK()`.
+2. Request a document extraction with `sensible.extract()`. Use the following required parameters:
+   1.  **(required)** Specify the document from which to extract data using the `url`, `path`, or `file` parameter.
+   2.  **(required)** Specify the user-defined document type or types using the `document_type` or `document_types` parameter.
+3. Wait for the results. Use `sensible.wait_for()`, or use a webhook.
+4. Optionally convert extractions to an Excel file with `generate_excel()`.
+5. Consume the data.
+
+### Extraction configuration
+
+ You can configure options for document data extraction:
 
 ```python
-from sensibleapi import SensibleSDK
-
-sensible = SensibleSDK(YOUR_API_KEY)
-
 request = sensible.extract(
-      path="./contract.pdf",
-      documentType="sensible_instruct_basics",
-      environment="development" # see Python SDK reference for configuration options
-    )
-results = sensible.waitFor(request) # waitFor is optional if you configure  a webhook
-print(results) # see Python SDK reference to convert results from JSON to Excel
-```
-
-## Classify
-
-You can classify a document by its similarity to each document type you define in your Sensible account. For example, if you define a [bank statements](https://github.com/sensible-hq/sensible-configuration-library/tree/main/bank_statements) type and a [tax_forms](https://github.com/sensible-hq/sensible-configuration-library/tree/main/tax_forms) type in your account, you can classify 1040 forms, 1099 forms, Bank of America statements, Chase statements, and other documents, into those two types.
-
-See the following code example for classifying a document.
-
-```python
-request = sensible.classify(path="./boa_sample.pdf") 
-results = sensible.waitFor(request)
-```
-
-To classify an example document, take the following steps:
-
-1. Follow the steps in [Out-of-the-box extractions](https://docs.sensible.so/docs/library-quickstart) to add support for bank statements to your account.
-
-2. Follow the steps in the preceding sections to install and initialize the SDK.
-
-3. Download the following example file and save it in the same directory as your `index.py` file: 
-
-| Example document | [Download link](https://github.com/sensible-hq/sensible-configuration-library/raw/main/bank_statements/bank_of_america/boa_sample.pdf) |
-| ---------------- | ------------------------------------------------------------ |
-
-4. Paste the preceding code into your `index.py` file. Ensure you replaced`YOUR_API_KEY` with your [API key]((https://app.sensible.so/account/) and `YOUR_DOCUMENT.pdf` with `boa_sample.pdf`. See the following code example to check your code completeness.
-
-5. In a command prompt in the same directory as your `index.py` file, run the code with the following command:
-
-```shell
-python index.py
-```
-
-#### Check results
-
-The following excerpt of the results shows document classification:
-
-```json
-{
-  "document_type": {
-    "id": "22666f4f-b8d6-4cb5-ad52-d00996989729",
-    "name": "bank_statements",
-    "score": 0.8922476745112722
-  },
-  "reference_documents": [
-    {
-      "id": "c82ac28e-7725-4e42-b77c-e74551684caa",
-      "name": "boa_sample",
-      "score": 0.9999980536061833
-    },
-    {
-      "id": "f80424a0-58f8-40e7-814a-eb49b199221e",
-      "name": "wells_fargo_checking_sample",
-      "score": 0.8946129923339182
-    },
-    {
-      "id": "cf17daf8-7e8b-4b44-bc4b-7cdd6518d963",
-      "name": "chase_consolidated_balance_summary_sample",
-      "score": 0.8677569417649393
+    path="./1040_john_doe.pdf",
+    document_type="tax_forms",
+    configuration_name="1040_2021",
+    environment="development",
+    webhook={
+        "url": "YOUR_WEBHOOK_URL",
+        "payload": "additional info, for example, a UUID for verification",
     }
-  ]
-}
+)
 ```
 
-#### Complete code example
+See the following table for information about configuration options:
 
-Here's a complete example of how to use the SDK for document classification in your own app:
+| key               | value                                                      | description                                                  |
+| ----------------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
+| path              | string                                                     | The path to the document you want to extract from. For more information about supported file size and types, see  [Supported file types](https://docs.sensible.so/docs/file-types). |
+| file              | string                                                     | The non-encoded bytes of the document you want to extract from. |
+| url               | string                                                     | The URL of the document you want to extract from. URL must:<br/>- respond to a GET request with the bytes of the document you want to extract data from <br/>- be either publicly accessible, or presigned with a security token as part of the URL path.<br/>To check if the URL meets these criteria, open the URL with a web browser. The browser must either render the document as a full-page view with no other data, or download the document, without prompting for authentication. |
+| document_type      | string                                                     | Type of document to extract from. Create your custom type in the Sensible app (for example, `rate_confirmation`, `certificate_of_insurance`, or `home_inspection_report`), or use Sensible's library of out-of-the-box supported document types. |
+| document_types     | array                                                      | Types of documents to extract from. Use this parameter to extract from multiple documents that are packaged into one file (a "portfolio").  This parameter specifies the document types contained in the portfolio. Sensible then segments the portfolio into documents using the specified document types (for example, 1099, w2, and bank_statement) and then runs extractions for each document. For more information, see [Multi-doc extraction](https://docs.sensible.so/docs/portfolio). |
+| configuration_name | string                                                     | If specified, Sensible uses the specified config to extract data from the document instead of automatically choosing the configuration.<br/>If unspecified, Sensible automatically chooses the best-scoring extraction from the configs in the document type.<br/>Not applicable for portfolios. |
+| document_name      | string                                                     | If you specify the file name of the document using this parameter, then Sensible returns the file name in the extraction response and populates the file name in the Sensible app's list of recent extractions. |
+| environment       | `"production"` or `"development"`. default: `"production"` | If you specify `development`, Sensible extracts preferentially using config versions published to the development environment in the Sensible app. The extraction runs all configs in the doc type before picking the best fit. For each config, falls back to production version if no development version of the config exists. |
+| webhook           | object                                                     | Specifies to return extraction results to the specified webhook URL as soon as they're complete, so you don't have to poll for results status. Sensible also calls this webhook on error.<br/> The webhook object has the following parameters:<br/>`url`:  string. Webhook destination. Sensible will POST to this URL when the extraction is complete.<br/>`payload`: string, number, boolean, object, or array. Information additional to the API response, for example a UUID for verification. |
+
+### Extraction results
+
+Get extraction results by using a webhook or calling the Wait For method.
+
+For the schema for the results of an extraction request,  see [Extract data from a document](https://docs.sensible.so/reference/extract-data-from-a-document) and expand the 200 responses in the middle pane and the right pane to see the model and an example, respectively.
+
+
+## Usage: Classify documents by type
+
+You can use this SDK to classify a document by type, as specified by the document types defined in your Sensible account. For more information, see [Classifying documents by type](https://docs.sensible.so/docs/classify).
+
+### Overview
+
+See the following steps for an overview of the SDK's workflow for document classification:
+
+1. Instantiate an SDK object (`new SensibleSDK()`.
+
+2. Request a document classification (`sensible.classify()`.  Specify the document to classify using the `path` or  `file` parameter.
+
+3. Poll for the result (`sensible.waitFor()`.
+
+4. Consume the data.
+
+
+### Classification configuration
+
+You can configure options for document data extraction:
 
 ```python
 from sensibleapi import SensibleSDK
 
-sensible = SensibleSDK(YOUR_API_KEY)
-request = sensible.classify(path="./boa_sample.pdf") 
-results = sensible.waitFor(request)
+sensible = SensibleSDK(api_key="YOUR_API_KEY")  # Replace with your API key
+request = sensible.classify(path="./boa_sample.pdf")
+results = sensible.wait_for(request)
 print(results)
 ```
+
+See the following table for information about configuration options:
+
+| key  | value  | description                                                  |
+| ---- | ------ | ------------------------------------------------------------ |
+| path | string | The path to the document you want to classify. For information about supported file size and types, see [Supported file types](https://docs.sensible.so/docs/file-types). |
+| file | string | The non-encoded bytes of the document you want to classify.  |
+
+### Classification results
+
+Get results from this method by calling the Wait For method. For the schema for the results of a classification request , see [Classify document by type (sync)](https://docs.sensible.so/reference/classify-document-sync) and expand the 200 responses in the middle pane and the right pane to see the model and an example, respectively.
