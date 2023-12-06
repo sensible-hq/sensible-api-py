@@ -7,7 +7,9 @@ The open-source Sensible Python SDK offers convenient access to the [Sensible AP
 
 ## Documentation
 
-For configuration options, see [Python SDK reference](https://docs.sensible.so/docs/sdk-python).
+- For extraction and classification response schemas, see [Sensible API](https://docs.sensible.so/reference/choosing-an-endpoint).
+- For configuring document extractions, see [SenseML reference](https://docs.sensible.so/docs/senseml-reference-introduction).
+
 
 ## Install
 
@@ -143,7 +145,7 @@ results = sensible.waitFor(request)
 
 To classify an example document, take the following steps:
 
-1. Follow the steps in [Out-of-the-box extractions](https://docs.sensible.so/reference/choosing-an-endpoint/library-quickstart) to add support for bank statements to your account.
+1. Follow the steps in [Out-of-the-box extractions](https://docs.sensible.so/docs/library-quickstart) to add support for bank statements to your account.
 
 2. Follow the steps in the preceding sections to install and initialize the SDK.
 
@@ -162,7 +164,7 @@ python index.py
 
 #### Check results
 
-The following excerpt of the results shows the extracted document text in the `TO_DO` object:
+The following excerpt of the results shows document classification:
 
 ```json
 {
