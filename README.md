@@ -172,7 +172,7 @@ See the following steps for an overview of the SDK's workflow for document class
 
 2. Request a document classification (`sensible.classify()`.  Specify the document to classify using the `path` or  `file` parameter.
 
-3. Poll for the result (`sensible.waitFor()`.
+3. Poll for the result (`sensible.wait_for()`.
 
 4. Consume the data.
 
