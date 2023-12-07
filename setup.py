@@ -1,7 +1,7 @@
+import os
 from setuptools import setup, find_packages
 
-# Get the long description from the project's README.rst file
-with open(os.path.join(project_root, 'README.rst'), encoding='utf-8') as f:
+with open('./README.md', encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
@@ -13,6 +13,7 @@ setup(
     packages=find_packages(),
     install_requires=['requests'],
     long_description=long_description,
+    long_description_content_type="text/markdown",
     url="https://github.com/sensible-hq/sensible-api-py"
 )
 
