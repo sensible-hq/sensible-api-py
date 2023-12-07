@@ -5,6 +5,7 @@ import requests
 
 base_url = "https://api.sensible.so/v0"
 
+
 class SensibleSDK:
     def __init__(self, api_key):
         self.api_key = api_key
@@ -50,8 +51,7 @@ class SensibleSDK:
                 raise Exception(
                     f'Got invalid response from generate_upload_url: {response.text}')
             return {"type": "extraction", "id": response_body["id"]}
-
-        if not is_extraction_url_response(response_body):
+        elif not is_extraction_url_response(response_body):
             raise Exception(
                 f'Got invalid response from extract_from_url: {response.text}')
 
@@ -130,17 +130,18 @@ def throw_error(response):
     status = response.status_code
     if status == 400:
         raise Exception(f'Bad Request (400): {response.text}')
-    if status == 401:
+    elif status == 401:
         raise Exception("Unauthorized (401), please check your API key")
-    if status == 415:
+    elif status == 415:
         raise Exception(
             "Unsupported Media Type (415), please check your document format")
-    if status == 429:
+    elif status == 429:
         # automatic retry?
         raise Exception("Too Many Requests (429)")
-    if status == 500:
+    elif status == 500:
         raise Exception(f'Internal Server Error (500): {response.text}')
-    raise Exception(f'Got unknown HTTP status code {status}: {response.text}')
+    else
+        raise Exception(f'Got unknown HTTP status code {status}: {response.text}')
 
 
 def is_extraction_response(response):
