@@ -140,7 +140,7 @@ def throw_error(response):
         raise Exception("Too Many Requests (429)")
     elif status == 500:
         raise Exception(f'Internal Server Error (500): {response.text}')
-    else
+    else:
         raise Exception(f'Got unknown HTTP status code {status}: {response.text}')
 
 
