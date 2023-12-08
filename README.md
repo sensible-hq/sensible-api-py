@@ -60,20 +60,16 @@ To extract data from a sample document at a URL:
 2. Paste the following code into an empty `index.py` file:
 
 ```python
-import asyncio
 from sensibleapi import SensibleSDK
 
-async def main():
-  sensible = SensibleSDK("YOUR_API_KEY")  # replace with your API key
-  request = await sensible.extract(
-      url="https://github.com/sensible-hq/sensible-docs/raw/main/readme-sync/assets/v0/pdfs/contract.pdf",
-      document_type="sensible_instruct_basics",
-      environment="development"
-  )
-  results = await sensible.wait_for(request)  # polls every 5 seconds. Optional if you configure a webhook
-  print(results)
-
-asyncio.run(main())
+sensible = SensibleSDK("YOUR_API_KEY")  # replace with your API key
+request = sensible.extract(
+    url="https://github.com/sensible-hq/sensible-docs/raw/main/readme-sync/assets/v0/pdfs/contract.pdf",
+    document_type="sensible_instruct_basics",
+    environment="development"
+)
+results = sensible.wait_for(request)  # polls every 5 seconds. Optional if you configure a webhook
+print(results)
 ```
 
 2. Replace `YOUR_API_KEY` with your [API key](https://app.sensible.so/account/).
@@ -186,16 +182,12 @@ See the following steps for an overview of the SDK's workflow for document class
 You can configure options for document data extraction:
 
 ```python
-import asyncio
 from sensibleapi import SensibleSDK
 
-async def main():
-    sensible = SensibleSDK(api_key="YOUR_API_KEY")  # Replace with your API key
-    request = await sensible.classify(path="./boa_sample.pdf")
-    results = await sensible.wait_for(request)
-    print(results)
-
-asyncio.run(main())
+sensible = SensibleSDK(api_key="YOUR_API_KEY")  # Replace with your API key
+request = sensible.classify(path="./boa_sample.pdf")
+results = sensible.wait_for(request)
+print(results)
 ```
 
 See the following table for information about configuration options:

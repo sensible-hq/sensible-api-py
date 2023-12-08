@@ -6,7 +6,7 @@ with open('./README.md', encoding='utf-8') as f:
 
 setup(
     name='sensibleapi',
-    version='0.0.6',
+    version='0.0.5',
     author='Sensible Technologies, Inc',
     author_email='hello@sensible.so',
     description='Python SDK for Sensible, the developer-first platform for extracting structured data from documents so that you can build document-automation features into your SaaS products',
