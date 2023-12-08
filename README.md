@@ -106,7 +106,7 @@ Navigate to the example in the [SenseML editor](https://app.sensible.so/editor/?
 
 ![Click to enlarge](https://raw.githubusercontent.com/sensible-hq/sensible-docs/main/readme-sync/assets/v0/images/final/sdk_node_1.png)
 
-## Usage: Extract document data
+## Usage: Extract document data<a id="usage-extract-document-data"></a>
 
 You can use this SDK to extract data from a document, as specified by the extraction configurations and document types defined in your Sensible account.
 
@@ -160,7 +160,7 @@ Get extraction results by using a webhook or calling the Wait For method.
 For the schema for the results of an extraction request,  see [Extract data from a document](https://docs.sensible.so/reference/extract-data-from-a-document) and expand the 200 responses in the middle pane and the right pane to see the model and an example, respectively.
 
 
-## Usage: Classify documents by type
+## Usage: Classify documents by type<a id="usage-classify-documents-by-type"></a>
 
 You can use this SDK to classify a document by type, as specified by the document types defined in your Sensible account. For more information, see [Classifying documents by type](https://docs.sensible.so/docs/classify).
 
