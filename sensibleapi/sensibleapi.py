@@ -10,7 +10,7 @@ class SensibleSDK:
     def __init__(self, api_key):
         self.api_key = api_key
 
-    async def extract(self, *,
+    def extract(self, *,
                 file=None,
                 url=None,
                 path=None,
@@ -84,7 +84,7 @@ class SensibleSDK:
             "download_link": response_body["download_link"]
         }
 
-    async def wait_for(self, request):
+    def wait_for(self, request):
         headers = {"authorization": f'Bearer {self.api_key}',
                    "content-type": "application/json"}
         while True:
@@ -104,7 +104,7 @@ class SensibleSDK:
                     throw_error(response)
             time.sleep(5)
 
-    async def generate_excel(self, extractions):
+    def generate_excel(self, extractions):
         headers = {"authorization": f'Bearer {self.api_key}'}
 
         if type(extractions) not in (tuple, list):
