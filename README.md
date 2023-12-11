@@ -1,13 +1,14 @@
 # Sensible Python SDK
 
-Welcome! Sensible is a developer-first platform for extracting structured data from documents, for example, business forms in PDF format. use Sensible to build document-automation features into your SaaS products. Sensible is highly configurable: you can get simple data [in minutes](https://docs.sensible.so/docs/getting-started-ai) by leveraging GPT-4 and other large-language models (LLMs), or you can tackle complex and idiosyncratic document formatting with Sensible's powerful [layout-based document primitives](https://docs.sensible.so/docs/getting-started).
+
+Welcome! Sensible is a developer-first platform for extracting structured data from documents, such as business forms in PDF format. Use Sensible to integrate document-automation features into your SaaS products. Sensible is highly configurable: you can obtain simple data [in minutes](https://docs.sensible.so/docs/getting-started-ai) by leveraging GPT-4 and other large-language models (LLMs), or you can address complex and idiosyncratic document formatting with Sensible's powerful [layout-based document primitives](https://docs.sensible.so/docs/getting-started).
 
 ![Click to enlarge](https://raw.githubusercontent.com/sensible-hq/sensible-docs/main/readme-sync/assets/v0/images/final/intro_SDK_2.png)
 
-This open-source Sensible SDK offers convenient access to the [Sensible API](https://docs.sensible.so/reference/choosing-an-endpoint). Use this SDK to:
+This open-source Sensible SDK provides convenient access to the [Sensible API](https://docs.sensible.so/reference/choosing-an-endpoint). Use this SDK to:
 
 - [Extract](#usage-extract-document-data): Extract structured data from your custom documents. Configure the extractions for a set of similar documents, or *document type*, in the Sensible app or Sensible API, then run extractions for documents of the type with this SDK.
-- [Classify](#usage-classify-documents-by-type): Classify documents by the types you define, for example, bank statements or tax forms. Use classification to determine which documents to extract prior to calling a Sensible extraction endpoint, or route each document in a system of record.
+- [Classify](#usage-classify-documents-by-type): Classify documents by the types you define, such as bank statements or tax forms. Use classification to determine which documents to extract prior to calling a Sensible extraction endpoint or route each document in a system of record.
 
 ## Documentation
 
