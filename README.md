@@ -26,7 +26,7 @@ This open-source Sensible SDK offers convenient access to the [Sensible API](htt
 
 ## Install
 
-In an environment in which you've installed Python, create a directory for a test project, open a command prompt in the directory, and install the dependencies:
+In an environment with Python installed, create a directory for a test project, open a command prompt in the directory, and install the dependencies:
 
 ```shell
 pip install sensibleapi
