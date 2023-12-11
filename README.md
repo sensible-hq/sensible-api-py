@@ -159,6 +159,57 @@ Get extraction results by using a webhook or calling the Wait For method.
 
 For the schema for the results of an extraction request,  see [Extract data from a document](https://docs.sensible.so/reference/extract-data-from-a-document) and expand the 200 responses in the middle pane and the right pane to see the model and an example, respectively.
 
+### Example: Extract from PDFs in directory and output an Excel file
+
+See the following code for an example of how to use the SDK for document extraction in your app.
+
+The example:
+
+1. Filters a directory to find the PDF files.
+2. Extracts data from the PDF files using the extraction configurations in a  `bank_statements` document type.
+4. Logs the extracted document data JSON to the console.
+3. Writes the extractions to an Excel file. The Generate Excel method takes an extraction or an array of extractions, and outputs an Excel file. For more information about the conversion process, see [SenseML to spreadsheet reference](https://docs.sensible.so/docs/excel-reference).
+
+
+```python
+import os
+import json
+import requests
+from sensibleapi import SensibleSDK
+from pathlib import Path
+
+api_key = os.environ.get(API_KEY)
+sensible = SensibleSDK(api_key)
+dir_path = Path("ABSOLUTE_PATH_TO_DOCUMENTS_DIR")
+pdf_files = [file for file in dir_path.glob("*.pdf")]
+
+extractions = []
+for pdf_file in pdf_files:
+    file_path = dir_path / pdf_file
+    extraction = sensible.extract(path=str(file_path), document_type="bank_statements")
+    extractions.append(extraction)
+
+results = [sensible.wait_for(extraction) for extraction in extractions]
+
+print("Extractions:")
+print(json.dumps(extractions, indent=2))
+
+print("\nResults:")
+print(json.dumps(results, indent=2))
+
+excel = sensible.generate_excel(extractions)
+print("Excel download URL:")
+print(excel)
+
+excel_file = requests.get(excel["url"])
+output_path = dir_path / "output.xlsx"
+with open(output_path, "wb") as f:
+    f.write(excel_file.content)
+print("Excel file:")
+print(output_path)
+
+```
+
 
 ## Usage: Classify documents by type<a id="usage-classify-documents-by-type"></a>
 
