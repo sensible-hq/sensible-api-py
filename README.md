@@ -26,19 +26,18 @@ This open-source Sensible SDK offers convenient access to the [Sensible API](htt
 
 ## Install
 
-In an environment with Python installed, create a directory for a test project, open a command prompt in the directory, and install the dependencies:
+In an environment with Python installed, open a command prompt and enter the following commands to create a test project:
+
+```shell
+mkdir sensible-test
+cd sensible-test
+touch index.mjs
+```
+
+Then install the SDK:
 
 ```shell
 pip install sensibleapi
-```
-
-To import Sensible to your project,  create an `index.py` file in your test project, and add the following lines to the file:
-
-
-
-
-```python
-from sensibleapi import SensibleSDK
 ```
 
 ## Initialize
@@ -180,7 +179,7 @@ import requests
 from sensibleapi import SensibleSDK
 from pathlib import Path
 
-api_key = os.environ.get(API_KEY)
+api_key = os.environ.get(SENSIBLE_APIKEY)
 sensible = SensibleSDK(api_key)
 dir_path = Path("ABSOLUTE_PATH_TO_DOCUMENTS_DIR")
 pdf_files = [file for file in dir_path.glob("*.pdf")]
