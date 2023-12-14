@@ -122,7 +122,7 @@ def querystring(environment, document_name):
     if environment:
         query["environment"] = environment
     if document_name:
-        query["documentName"] = document_name
+        query["document_name"] = document_name
     return f'?{urlencode(query)}'
 
 
