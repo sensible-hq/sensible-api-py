@@ -6,7 +6,7 @@ with open('./README.md', encoding='utf-8') as f:
 
 setup(
     name='sensibleapi',
-    version='0.0.12',
+    version='0.0.15',
     author='Sensible Technologies, Inc',
     author_email='hello@sensible.so',
     description='Python SDK for Sensible, the developer-first platform for extracting structured data from documents so that you can build document-automation features into your SaaS products',
@@ -14,6 +14,8 @@ setup(
     install_requires=['requests'],
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/sensible-hq/sensible-api-py"
+    url="https://github.com/sensible-hq/sensible-api-py",
+    license_files = ('LICENSE',),
+    license = 'MIT'
 )
 
