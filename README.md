@@ -47,7 +47,7 @@ Get an account at [sensible.so](https://app.sensible.so/register) if you don't h
 To initialize the SDK, paste the following code into your `index.py` file and replace `YOUR_API_KEY` with your [API key](https://app.sensible.so/account/):
 
 ```python
-sensible = SensibleSDK("YOUR_API_KEY")
+sensible = SensibleSDK(YOUR_API_KEY)
 ```
 
 **Note:** Ensure you secure your API key in production, for example as a GitHub secret.
@@ -62,7 +62,7 @@ To extract data from a sample document at a URL:
 ```python
 from sensibleapi import SensibleSDK
 
-sensible = SensibleSDK("YOUR_API_KEY")  # replace with your API key
+sensible = SensibleSDK(YOUR_API_KEY)  # replace with your API key
 request = sensible.extract(
     url="https://github.com/sensible-hq/sensible-docs/raw/main/readme-sync/assets/v0/pdfs/contract.pdf",
     document_type="sensible_instruct_basics",
@@ -236,7 +236,7 @@ You can configure options for document data extraction:
 ```python
 from sensibleapi import SensibleSDK
 
-sensible = SensibleSDK(api_key="YOUR_API_KEY")  # Replace with your API key
+sensible = SensibleSDK(api_key=YOUR_API_KEY)  # Replace with your API key
 request = sensible.classify(path="./boa_sample.pdf")
 results = sensible.wait_for(request)
 print(results)
