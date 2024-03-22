@@ -44,7 +44,7 @@ pip install sensibleapi
 
 Get an account at [sensible.so](https://app.sensible.so/register) if you don't have one already.
 
-To initialize the SDK, paste the following code into your `index.py` file and replace `YOUR_API_KEY` with your [API key](https://app.sensible.so/account/):
+To initialize the SDK, paste the following code into your `index.py` file and replace `*YOUR_API_KEY*` with your [API key](https://app.sensible.so/account/):
 
 ```python
 sensible = SensibleSDK(YOUR_API_KEY)
@@ -72,7 +72,7 @@ results = sensible.wait_for(request)  # polls every 5 seconds. Optional if you c
 print(results)
 ```
 
-2. Replace `YOUR_API_KEY` with your [API key](https://app.sensible.so/account/).
+2. replace `*YOUR_API_KEY*` with your [API key](https://app.sensible.so/account/).
 3. In a command prompt in the same directory as your `index.py` file, run the code with the following command:
 
 ```shell
