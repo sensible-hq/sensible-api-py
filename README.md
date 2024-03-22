@@ -179,7 +179,7 @@ import requests
 from sensibleapi import SensibleSDK
 from pathlib import Path
 
-api_key = os.environ.get(SENSIBLE_APIKEY)
+api_key = os.environ.get(SENSIBLE_API_KEY)
 sensible = SensibleSDK(api_key)
 dir_path = Path("ABSOLUTE_PATH_TO_DOCUMENTS_DIR")
 pdf_files = [file for file in dir_path.glob("*.pdf")]
