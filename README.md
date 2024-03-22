@@ -72,7 +72,7 @@ results = sensible.wait_for(request)  # polls every 5 seconds. Optional if you c
 print(results)
 ```
 
-2. replace `*YOUR_API_KEY*` with your [API key](https://app.sensible.so/account/).
+2. Replace `*YOUR_API_KEY*` with your [API key](https://app.sensible.so/account/).
 3. In a command prompt in the same directory as your `index.py` file, run the code with the following command:
 
 ```shell
