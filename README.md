@@ -47,10 +47,11 @@ Get an account at [sensible.so](https://app.sensible.so/register) if you don't h
 To initialize the SDK, paste the following code into your `index.py` file and replace `*YOUR_API_KEY*` with your [API key](https://app.sensible.so/account/):
 
 ```python
+# if you paste in your key, like `SensibleSDK("1ac34b14")` then secure it in production
 sensible = SensibleSDK(YOUR_API_KEY)
 ```
 
-**Note:** Ensure you secure your API key in production, for example as a GitHub secret.
+**Note:** Secure your API key in production, for example as a GitHub secret.
 
 ## Quickstart<a id="quickstart"></a>
 
