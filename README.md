@@ -238,7 +238,8 @@ You can configure options for document data extraction:
 ```python
 from sensibleapi import SensibleSDK
 
-sensible = SensibleSDK(api_key=YOUR_API_KEY)  # Replace with your API key
+# if you paste in your key, like `SensibleSDK("1ac34b14")` then secure the key in production
+sensible = SensibleSDK(YOUR_API_KEY)
 request = sensible.classify(path="./boa_sample.pdf")
 results = sensible.wait_for(request)
 print(results)
