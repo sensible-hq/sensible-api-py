@@ -94,7 +94,7 @@ class SensibleSDK:
                 if response.status_code != 200:
                     throw_error(response)
                 response_body = response.json()
-                if "status" in response_body and response_body["status"] != "WAITING":
+                if "status" in response_body and (response_body["status"] == "FAILED" or response_body["status"] == "COMPLETE"):
                     return response_body
             else:
                 response = requests.get(request["download_link"])
