@@ -3,7 +3,7 @@
 
 Welcome! Sensible is a developer-first platform for extracting structured data from documents, for example, business forms in PDF format. Use Sensible to build document-automation features into your SaaS products. Sensible is highly configurable: you can get simple data [in minutes](https://docs.sensible.so/docs/getting-started-ai) by leveraging GPT-4 and other large-language models (LLMs), or you can tackle complex and idiosyncratic document formatting with Sensible's powerful [layout-based document primitives](https://docs.sensible.so/docs/getting-started).
 
-![Click to enlarge](https://raw.githubusercontent.com/sensible-hq/sensible-docs/main/readme-sync/assets/v0/images/final/intro_SDK_2.png)
+![Click to enlarge](https://raw.githubusercontent.com/sensible-hq/sensible-docs/v0/assets/images/final/intro_SDK_2.png)
 
 This open-source Sensible SDK offers convenient access to the [Sensible API](https://docs.sensible.so/reference/choosing-an-endpoint). Use this SDK to:
 
@@ -106,7 +106,7 @@ You should see the following extracted document text in the `parsed_document` ob
 
 Navigate to the example in the [SenseML editor](https://app.sensible.so/editor/?d=llm_basics&c=contract&g=contract) to see how the extraction you just ran works in the Sensible app. You can add more fields to the left pane to extract more data:
 
-![Click to enlarge](https://raw.githubusercontent.com/sensible-hq/sensible-docs/main/readme-sync/assets/v0/images/final/sdk_node_1.png)
+![Click to enlarge](https://raw.githubusercontent.com/sensible-hq/sensible-docs/v0/assets/images/final/sdk_node_1.png)
 
 ## Usage: Extract document data<a id="usage-extract-document-data"></a>
 
